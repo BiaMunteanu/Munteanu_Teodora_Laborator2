@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Munteanu_Teodora_Laborator2.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Munteanu_Teodora_Laborator2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Munteanu_Teodora_Laborator2Context") ?? throw new InvalidOperationException("Connection string 'Munteanu_Teodora_Laborator2Context' not found.")));
 
 var app = builder.Build();
 
